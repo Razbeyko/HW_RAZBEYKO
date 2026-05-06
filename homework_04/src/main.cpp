@@ -1,4 +1,34 @@
 #include <iostream>
+#include <vector>
+#include <cmath>
+
+struct point
+{
+    float timestamp_ms;
+    float fl_ticks;
+    float fr_ticks;
+    float bl_ticks;
+    float br_ticks;
+    point();
+    point(float _timestamp_ms, float _fl_ticks, float _fr_ticks, float _bl_ticks, float _br_ticks)
+    {
+        timestamp_ms = _timestamp_ms;
+        fl_ticks = _fl_ticks;
+        fr_ticks = _fr_ticks;
+        bl_ticks = _bl_ticks;
+        br_ticks = _br_ticks;
+    }
+};
+struct wayData
+{
+    std::vector<point> points;
+};
+struct coord
+{
+    float x;
+    float y;
+    float theta;
+};
 
 int main(int argc, char** argv) {
     // The program expects exactly one argument: a path to telemetry samples.
