@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -29,6 +30,43 @@ struct coord
     float y;
     float theta;
 };
+
+void readFromFileInput(std::vector<point>& _points)
+{
+    //std::ifstream file("combined.txt");
+    //std::ifstream file("straight.txt");
+    std::ifstream file("turn.txt");
+    std::string line;
+    if (file.is_open()) 
+    {
+        while(getline(file, line))
+        {
+            std::string subLines[5];
+            int num_subLine = 0;
+            for(int i = 0; i < line.length(); i++)
+            {
+                if(line[i] == ' ')
+                {
+                    num_subLine++;
+                    continue;
+                }
+                subLines[num_subLine] += line[i];
+            }
+            _points.push_back(point(std::stof(subLines[0]), 
+                                    std::stof(subLines[1]), 
+                                    std::stof(subLines[2]), 
+                                    std::stof(subLines[3]), 
+                                    std::stof(subLines[4])));
+        }
+        file.close(); // Закриття файлу
+    }
+    else
+    {
+        std::cout << "Помилка відкриття файлу";
+    }
+
+    return;
+}
 
 int main(int argc, char** argv) {
     // The program expects exactly one argument: a path to telemetry samples.
