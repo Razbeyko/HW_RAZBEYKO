@@ -31,11 +31,9 @@ struct coord
     float theta;
 };
 
-void readFromFileInput(std::vector<point>& _points)
+void readFromFileInput(std::vector<point>& _points, char* _argv)
 {
-    //std::ifstream file("combined.txt");
-    //std::ifstream file("straight.txt");
-    std::ifstream file("turn.txt");
+    std::ifstream file(_argv);
     std::string line;
     if (file.is_open()) 
     {
@@ -88,7 +86,7 @@ int main(int argc, char** argv) {
 //         timestamp_ms x y theta
 
     wayData wayPointsOfRobot;
-    readFromFileInput(wayPointsOfRobot.points);
+    readFromFileInput(wayPointsOfRobot.points, argv[1]);
 
     // Model parameters:
     float ticks_per_revolution = 1024.f;
